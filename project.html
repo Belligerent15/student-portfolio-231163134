@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Nexus - Team Project | Brilliant Maloma</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+            --success: #48bb78;
+            --warning: #ed8936;
+            --dark: #2d3748;
+            --light: #f7fafc;
+            --text: #4a5568;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem 0;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 0.5rem;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, var(--light), #e2e8f0);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--primary);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Team Table */
+        .team-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .team-table th {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .team-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .team-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .team-table tr:hover {
+            background-color: #f7fafc;
+        }
+
+        .role-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .role-po { background: var(--success); color: white; }
+        .role-sm { background: var(--warning); color: white; }
+        .role-dev { background: var(--primary); color: white; }
+        .role-qa { background: var(--accent); color: white; }
+
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .tech-item {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Problem Solutions */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .solution-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-top: 4px solid var(--success);
+        }
+
+        .solution-card h4 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            margin-top: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+        }
+
+        .nav-links a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animated {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--success);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .features-grid,
+            .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .team-table {
+                font-size: 0.9rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="animated">
+            <div class="logo">🎓</div>
+            <h1>Campus Nexus</h1>
+            <p class="tagline">Comprehensive Campus Management Solution</p>
+            <div class="status-badge">
+                <span>🚀 Active Development</span>
+                <span>Version 2.1</span>
+            </div>
+            <p>Developed by Infinity Cybertech - Building tomorrow's campus solutions today</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Project Overview -->
+            <div class="card animated">
+                <h2>📋 Project Overview</h2>
+                <p>Campus Nexus is a comprehensive campus management solution designed to streamline administrative processes and enhance the student experience. This platform addresses common challenges faced by students and administrators in campus environments through innovative technology solutions.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>🤖 AI-Powered Chatbot</h3>
+                        <p>Instant access to student information and automated responses to common queries with natural language processing.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>💰 Bursary System</h3>
+                        <p>Centralized platform for bursary information, applications, and automated eligibility notifications.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🗺️ Campus Navigation</h3>
+                        <p>Interactive building-by-building navigation using coordinates to help new students find their way.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🍕 Food Ordering</h3>
+                        <p>Online food ordering system with convenient pickup options and real-time order tracking.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📝 Special Cases</h3>
+                        <p>Streamlined handling of administrative special cases with automated workflow management.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📚 Module Selection</h3>
+                        <p>User-friendly interface for browsing and selecting academic modules with personalized recommendations.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Members -->
+            <div class="card animated">
+                <h2>👥 Development Team</h2>
+                <table class="team-table">
+                    <thead>
+                        <tr>
+                            <th>Team Member</th>
+                            <th>Role</th>
+                            <th>Key Responsibilities</th>
+                            <th>Specialization</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Thalaga Makwela</strong></td>
+                            <td><span class="role-badge role-po">Product Owner</span></td>
+                            <td>Project vision, requirements gathering, stakeholder management</td>
+                            <td>Business Analysis</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Welcome Molefe</strong></td>
+                            <td><span class="role-badge role-sm">Scrum Master</span></td>
+                            <td>Agile processes, team coordination, impediment removal</td>
+                            <td>Project Management</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nathan Chinoma</strong></td>
+                            <td><span class="role-badge role-dev">Backend Developer</span></td>
+                            <td>Server-side logic, database design, API development</td>
+                            <td>Node.js, SQLite</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Brilliant Maloma</strong></td>
+                            <td><span class="role-badge role-dev">Frontend Developer</span></td>
+                            <td>User interface design, React components, user experience</td>
+                            <td>React, TypeScript, CSS</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bunono Mhlakaza</strong></td>
+                            <td><span class="role-badge role-qa">Quality Assurance</span></td>
+                            <td>Testing strategies, bug tracking, quality control</td>
+                            <td>Testing Automation</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Technology Stack -->
+            <div class="card animated">
+                <h2>🔧 Technology Stack</h2>
+                <div class="tech-stack">
+                    <div class="tech-item">React</div>
+                    <div class="tech-item">TypeScript</div>
+                    <div class="tech-item">Node.js</div>
+                    <div class="tech-item">SQLite</div>
+                    <div class="tech-item">JWT Authentication</div>
+                    <div class="tech-item">Natural Language Processing</div>
+                    <div class="tech-item">RESTful APIs</div>
+                    <div class="tech-item">CSS3 & Flexbox/Grid</div>
+                </div>
+            </div>
+
+            <!-- Problem Solutions -->
+            <div class="card animated">
+                <h2>💡 Campus Problems Solved</h2>
+                <div class="solutions-grid">
+                    <div class="solution-card">
+                        <h4>📊 Student Information Access</h4>
+                        <p>AI-powered chatbot provides instant access to student details, reducing queues at admin offices by 70%.</p>
+                    </div>
+                    <div class="solution-card">
+                        <h4>🎓 Bursary Management</h4>
+                        <p>Centralized system for bursary updates with automatic notifications about eligibility and deadlines.</p>
+                    </div>
+                    <div class="solution-card">
+                        <h4>🧭 Campus Navigation</h4>
+                        <p>Interactive map with building-by-building navigation and location-based services for new students.</p>
+                    </div>
+                    <div class="solution-card">
+                        <h4>🍽️ Food Services</h4>
+                        <p>Online food ordering system with convenient pickup options reducing cafeteria congestion by 40%.</p>
+                    </div>
+                    <div class="solution-card">
+                        <h4>⚡ Administrative Efficiency</h4>
+                        <p>Streamlined handling of special cases with reduced paperwork and manual processes.</p>
+                    </div>
+                    <div class="solution-card">
+                        <h4>📝 Academic Planning</h4>
+                        <p>Digital yearbook with easy module browsing and personalized recommendations.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Structure -->
+            <div class="card animated">
+                <h2>🏗️ Project Architecture</h2>
+                <div style="background: var(--light); padding: 1.5rem; border-radius: 10px; margin-top: 1rem;">
+                    <pre style="font-family: 'Courier New', monospace; line-height: 1.4;">
+campusnexus/
+├── frontend/              # React TypeScript Application
+│   ├── public/           # Static files
+│   └── src/
+│       ├── components/   # React components
+│       │   ├── Auth/            # Authentication
+│       │   ├── BursaryInfo/     # Bursary system
+│       │   ├── CampusNavigation/# Navigation
+│       │   ├── Chatbot/         # AI Chatbot
+│       │   ├── CourseRegistration/ # Course management
+│       │   ├── FoodOrdering/    # Food services
+│       │   ├── ModuleSelection/ # Module selection
+│       │   └── SpecialCases/    # Special cases
+│       └── App.tsx       # Main App component
+├── backend/              # Node.js Server
+│   ├── db/              # Database files
+│   ├── routes/          # API routes
+│   ├── middleware/      # Custom middleware
+│   └── index.js         # Server entry point
+└── docs/                # Documentation
+                    </pre>
+                </div>
+            </div>
+        </div>
+
+        <footer class="animated">
+            <p>🚀 <strong>Infinity Cybertech</strong> - Building tomorrow's campus solutions today</p>
+            <div class="nav-links">
+                <a href="index.html">← Back to Portfolio</a>
+                <a href="dynamic.php">View PHP Demo</a>
+                <a href="dynamic.jsp">View JSP Demo</a>
+                <a href="https://github.com/infinitycybertech/campusnexus" target="_blank">GitHub Repository</a>
+            </div>
+            <p style="margin-top: 1rem; color: var(--text); font-size: 0.9rem;">
+                © 2025 Campus Nexus | Infinity Cybertech. All rights reserved.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
