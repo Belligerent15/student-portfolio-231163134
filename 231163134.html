@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brilliant Maloma | Frontend Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+            --dark: #2d3748;
+            --light: #f7fafc;
+            --text: #4a5568;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem 0;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 0.5rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skill-item {
+            background: linear-gradient(135deg, var(--light), #e2e8f0);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--dark);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Links Section */
+        .links-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .link-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .link-card i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Projects Showcase */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .project-card {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .project-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            margin-top: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animated {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="animated">
+            <img src="images/photo.jpg" alt="Brilliant Maloma" class="profile-img">
+            <h1>Brilliant Maloma</h1>
+            <p class="tagline">Frontend Developer & UI/UX Enthusiast</p>
+            <p>Creating beautiful, responsive, and user-friendly web experiences</p>
+        </header>
+
+        <div class="main-content">
+            <div class="card animated">
+                <h2>About Me</h2>
+                <p>I'm a passionate frontend developer with expertise in modern web technologies. I specialize in creating intuitive user interfaces and seamless user experiences using React, TypeScript, and modern CSS.</p>
+                
+                <h3 style="margin-top: 1.5rem; color: var(--secondary);">My Passion</h3>
+                <p>I believe in the power of clean code and beautiful design to create digital experiences that make a difference. Every pixel matters, and every interaction counts.</p>
+            </div>
+
+            <div class="card animated">
+                <h2>Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">React.js</div>
+                    <div class="skill-item">TypeScript</div>
+                    <div class="skill-item">JavaScript ES6+</div>
+                    <div class="skill-item">HTML5 & CSS3</div>
+                    <div class="skill-item">Responsive Design</div>
+                    <div class="skill-item">Git & GitHub</div>
+                    <div class="skill-item">RESTful APIs</div>
+                    <div class="skill-item">UI/UX Design</div>
+                </div>
+            </div>
+
+            <div class="card animated">
+                <h2>Professional Links</h2>
+                <div class="links-section">
+                    <a href="https://linkedin.com/in/brilliantmaloma" class="link-card" target="_blank">
+                        <div>💼</div>
+                        <strong>LinkedIn</strong>
+                        <p>Professional Network</p>
+                    </a>
+                    <a href="https://github.com/brilliantmaloma" class="link-card" target="_blank">
+                        <div>💻</div>
+                        <strong>GitHub</strong>
+                        <p>Code Portfolio</p>
+                    </a>
+                    <a href="https://yourclaim.com/brilliantmaloma" class="link-card" target="_blank">
+                        <div>🏆</div>
+                        <strong>YourAcclaim</strong>
+                        <p>Certifications</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card animated">
+                <h2>Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Campus Nexus</h3>
+                        <p>Comprehensive campus management system with React frontend and AI-powered features.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3>E-Commerce Dashboard</h3>
+                        <p>Real-time analytics dashboard built with React and Chart.js</p>
+                    </div>
+                    <div class="project-card">
+                        <h3>Weather App</h3>
+                        <p>Responsive weather application with location-based forecasts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="animated">
+            <p>🚀 Ready to bring your ideas to life with code and creativity</p>
+            <div class="nav-links">
+                <a href="project.html">View Team Project</a>
+                <a href="dynamic.php">PHP Demo</a>
+                <a href="dynamic.jsp">JSP Demo</a>
+            </div>
+            <p style="margin-top: 1rem; color: var(--text);">© 2025 Brilliant Maloma. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Background Music -->
+    <audio autoplay loop>
+        <source src="images/MiscellaneousMinerals.mp3" type="audio/mp3">
+        <source src="images/MiscellaneousMinerals.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
