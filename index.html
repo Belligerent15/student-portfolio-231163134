@@ -1,360 +1,305 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brilliant Maloma | Frontend Developer</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #667eea;
-            --secondary: #764ba2;
-            --accent: #f093fb;
-            --dark: #2d3748;
-            --light: #f7fafc;
-            --text: #4a5568;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Header Styles */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 2rem 0;
-            text-align: center;
-            border-radius: 20px;
-            margin-bottom: 2rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .profile-img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--primary);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            margin-bottom: 1rem;
-        }
-
-        h1 {
-            font-size: 3rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-        }
-
-        .tagline {
-            font-size: 1.3rem;
-            color: var(--dark);
-            margin-bottom: 1rem;
-        }
-
-        /* Main Content */
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px);
-        }
-
-        .card h2 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
-            border-bottom: 3px solid var(--accent);
-            padding-bottom: 0.5rem;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .skill-item {
-            background: linear-gradient(135deg, var(--light), #e2e8f0);
-            padding: 1rem;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: 600;
-            color: var(--dark);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .skill-item:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Links Section */
-        .links-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .link-card {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 1.5rem;
-            border-radius: 15px;
-            text-align: center;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        .link-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        }
-
-        .link-card i {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Projects Showcase */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .project-card {
-            background: var(--light);
-            padding: 1.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-
-        .project-card h3 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            margin-top: 2rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-
-        .nav-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1rem;
-        }
-
-        .nav-links a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        /* Animation */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animated {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Brilliant Maloma — Frontend Developer</title>
+  <meta name="description" content="Brilliant Maloma — Frontend Developer. Building beautiful, accessible, and high-performance web experiences using React, TypeScript, and modern CSS." />
+  <meta name="theme-color" content="#6C5CE7" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>BM</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Social preview -->
+  <meta property="og:title" content="Brilliant Maloma — Frontend Developer">
+  <meta property="og:description" content="Building beautiful, accessible, and high-performance web experiences.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=Brilliant+Maloma">
 </head>
 <body>
-    <div class="container">
-        <header class="animated">
-            <img src="photo.jpg" alt="Brilliant Maloma" class="profile-img">
-            <h1>Brilliant Maloma</h1>
-            <p class="tagline">Frontend Developer & UI/UX Enthusiast</p>
-            <p>Creating beautiful, responsive, and user-friendly web experiences</p>
-        </header>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-        <div class="main-content">
-            <div class="card animated">
-                <h2>About Me</h2>
-                <p>I'm a passionate frontend developer with expertise in modern web technologies. I specialize in creating intuitive user interfaces and seamless user experiences using React, TypeScript, and modern CSS.</p>
-                
-                <h3 style="margin-top: 1.5rem; color: var(--secondary);">My Passion</h3>
-                <p>I believe in the power of clean code and beautiful design to create digital experiences that make a difference. Every pixel matters, and every interaction counts.</p>
-            </div>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="#" aria-label="Brilliant Maloma — Home">
+        <svg class="brand-mark" width="44" height="44" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="g" x1="0" x2="1">
+              <stop offset="0" stop-color="#667eea"/>
+              <stop offset="1" stop-color="#764ba2"/>
+            </linearGradient>
+          </defs>
+          <rect width="64" height="64" rx="12" fill="url(#g)"/>
+          <text x="50%" y="55%" fill="#fff" font-size="28" font-family="Inter,system-ui" text-anchor="middle" font-weight="700">BM</text>
+        </svg>
+        <span class="brand-text">Brilliant Maloma</span>
+      </a>
 
-            <div class="card animated">
-                <h2>Technical Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-item">React.js</div>
-                    <div class="skill-item">TypeScript</div>
-                    <div class="skill-item">JavaScript ES6+</div>
-                    <div class="skill-item">HTML5 & CSS3</div>
-                    <div class="skill-item">Responsive Design</div>
-                    <div class="skill-item">Git & GitHub</div>
-                    <div class="skill-item">RESTful APIs</div>
-                    <div class="skill-item">UI/UX Design</div>
-                </div>
-            </div>
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <button id="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode" class="btn-ghost">🌙</button>
+        <ul class="nav-list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a class="btn-primary" href="resume.pdf" download>Download Resume</a></li>
+        </ul>
 
-            <div class="card animated">
-                <h2>Professional Links</h2>
-                <div class="links-section">
-                    <a href="https://www.linkedin.com/in/brilliant-temollo-781770289?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="link-card" target="_blank">
-                        <div>💼</div>
-                        <strong>LinkedIn</strong>
-                        <p>Professional Network</p>
-                    </a>
-                    <a href="https://github.com/Belligerent15" class="link-card" target="_blank">
-                        <div>💻</div>
-                        <strong>GitHub</strong>
-                        <p>Code Portfolio</p>
-                    </a>
-                    <a href="https://yourclaim.com/brilliantmaloma" class="link-card" target="_blank">
-                        <div>🏆</div>
-                        <strong>YourAcclaim</strong>
-                        <p>Certifications</p>
-                    </a>
-                </div>
-            </div>
-
-            <div class="card animated">
-                <h2>Featured Projects</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <h3>Campus Nexus</h3>
-                        <p>Comprehensive campus management system with React frontend and AI-powered features.</p>
-                    </div>
-                    <div class="project-card">
-                        <h3>E-Commerce Dashboard</h3>
-                        <p>Real-time analytics dashboard built with React and Chart.js</p>
-                    </div>
-                    <div class="project-card">
-                        <h3>Weather App</h3>
-                        <p>Responsive weather application with location-based forecasts</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <footer class="animated">
-            <p>🚀 Ready to bring your ideas to life with code and creativity</p>
-            <div class="nav-links">
-                <a href="project.html">View Team Project</a>
-                <a href="http://localhost/231163134/dynamic.php">PHP Demo</a>
-                <a href="http://localhost:8088/231163134/dynamic.jsp">JSP Demo</a>
-            </div>
-            <p style="margin-top: 1rem; color: var(--text);">© 2025 Brilliant Maloma. All rights reserved.</p>
-        </footer>
+        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="sr-only">Open menu</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"/></svg>
+        </button>
+      </nav>
     </div>
 
-    <!-- Background Music -->
-    <audio autoplay loop>
-        <source src="MiscellaneousMinerals.mp3" type="audio/mp3">
-        <source src="MiscellaneousMinerals.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
+    <div id="mobile-menu" class="mobile-menu" hidden>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="resume.pdf" download>Download Resume</a></li>
+      </ul>
+    </div>
+  </header>
 
-    <script>
-        // Add intersection observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+  <main id="main" tabindex="-1">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <img class="profile-img" src="https://via.placeholder.com/360x360.png?text=Brilliant" alt="Portrait of Brilliant Maloma" width="360" height="360" loading="lazy">
+          <h1 class="hero-title">I’m Brilliant Maloma — Frontend Developer</h1>
+          <p class="hero-sub">I craft accessible, high-performance user interfaces and delightful experiences with React, TypeScript, and modern CSS. I care about accessibility, design systems, and measurable impact.</p>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+          <div class="hero-cta">
+            <a class="btn-primary" href="#contact">Hire me</a>
+            <a class="btn-ghost" href="#projects">View work</a>
+          </div>
 
-        // Observe all cards for animation
-        document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(card);
-            });
-        });
-    </script>
+          <ul class="social-inline" aria-label="Social links">
+            <li><a target="_blank" rel="noopener" href="https://github.com/Belligerent15" aria-label="GitHub">GitHub</a></li>
+            <li><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/brilliant-temollo-781770289" aria-label="LinkedIn">LinkedIn</a></li>
+            <li><a target="_blank" rel="noopener" href="https://yourclaim.com/brilliantmaloma" aria-label="YourAcclaim">YourAcclaim</a></li>
+          </ul>
+        </div>
+
+        <div class="hero-highlights" aria-hidden="false">
+          <div class="highlight-card">
+            <h3>Experience</h3>
+            <p class="big">5+ years</p>
+            <p class="muted">Frontend & UI engineering</p>
+          </div>
+          <div class="highlight-card">
+            <h3>Focus</h3>
+            <p class="big">React & TypeScript</p>
+            <p class="muted">Design systems, accessibility</p>
+          </div>
+          <div class="highlight-card">
+            <h3>Impact</h3>
+            <p class="big">Performance</p>
+            <p class="muted">Fast, optimized experiences</p>
+          </div>
+          <div class="highlight-card">
+            <h3>Availability</h3>
+            <p class="big">Open to work</p>
+            <p class="muted">Remote / Hybrid</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section card">
+      <div class="container">
+        <h2>About Me</h2>
+        <p>I build beautiful, accessible interfaces that scale. I take a pragmatic approach to UX and engineering: design systems, clear code, and measurable metrics. I enjoy mentoring, collaborating with product teams, and shipping production-grade features.</p>
+        <p><strong>Specialties:</strong> Modern JavaScript, React, TypeScript, CSS architecture (BEM / utility-first), performance optimization, component design, accessibility (WCAG), testing, and CI/CD.</p>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container">
+        <h2>Skills & Tools</h2>
+        <div class="skills-grid">
+          <div class="skill">
+            <label>React</label>
+            <div class="progress" aria-hidden="true"><div class="progress-bar" style="width:92%"></div></div>
+          </div>
+          <div class="skill">
+            <label>TypeScript</label>
+            <div class="progress"><div class="progress-bar" style="width:88%"></div></div>
+          </div>
+          <div class="skill">
+            <label>JavaScript (ES6+)</label>
+            <div class="progress"><div class="progress-bar" style="width:95%"></div></div>
+          </div>
+          <div class="skill">
+            <label>HTML / CSS / Accessibility</label>
+            <div class="progress"><div class="progress-bar" style="width:94%"></div></div>
+          </div>
+          <div class="skill">
+            <label>Design & Prototyping</label>
+            <div class="progress"><div class="progress-bar" style="width:78%"></div></div>
+          </div>
+          <div class="skill">
+            <label>Git, CI, Deployment</label>
+            <div class="progress"><div class="progress-bar" style="width:82%"></div></div>
+          </div>
+        </div>
+
+        <div class="tools">
+          <span class="chip">React</span>
+          <span class="chip">TypeScript</span>
+          <span class="chip">Vite / Webpack</span>
+          <span class="chip">Tailwind / Vanilla CSS</span>
+          <span class="chip">Jest / Testing Library</span>
+          <span class="chip">Figma / Miro</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section card">
+      <div class="container">
+        <div class="section-head">
+          <h2>Featured Projects</h2>
+          <div class="project-controls">
+            <label for="project-filter">Filter:</label>
+            <select id="project-filter" aria-label="Filter projects">
+              <option value="all">All</option>
+              <option value="webapp">Web Apps</option>
+              <option value="dashboard">Dashboards</option>
+              <option value="utility">Utilities</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="projects-grid" class="projects-grid" aria-live="polite">
+          <article class="project-card" data-type="webapp">
+            <img src="https://via.placeholder.com/800x420.png?text=Campus+Nexus" alt="Campus Nexus screenshot" loading="lazy">
+            <div class="project-body">
+              <h3>Campus Nexus</h3>
+              <p>Comprehensive campus management system — React frontend, modular components, and AI-assisted scheduling experience.</p>
+              <div class="project-actions">
+                <button class="btn-ghost view-project" data-project='{"title":"Campus Nexus","image":"https://via.placeholder.com/1200x700.png?text=Campus+Nexus","description":"A full-featured campus management system built with a focus on performance and usability."}'>Preview</button>
+                <a class="btn-primary" href="#" target="_blank" rel="noopener">Live</a>
+                <a class="btn-outline" href="#" target="_blank" rel="noopener">Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-type="dashboard">
+            <img src="https://via.placeholder.com/800x420.png?text=E-Commerce+Dashboard" alt="E-Commerce Dashboard screenshot" loading="lazy">
+            <div class="project-body">
+              <h3>E-Commerce Dashboard</h3>
+              <p>Real-time analytics dashboard with accessible charts, streaming updates, and progressive enhancement.</p>
+              <div class="project-actions">
+                <button class="btn-ghost view-project" data-project='{"title":"E-Commerce Dashboard","image":"https://via.placeholder.com/1200x700.png?text=E-Commerce+Dashboard","description":"Real-time analytics and high-density UI with performance optimizations."}'>Preview</button>
+                <a class="btn-primary" href="#" target="_blank" rel="noopener">Live</a>
+                <a class="btn-outline" href="#" target="_blank" rel="noopener">Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-type="utility">
+            <img src="https://via.placeholder.com/800x420.png?text=Weather+App" alt="Weather App screenshot" loading="lazy">
+            <div class="project-body">
+              <h3>Weather App</h3>
+              <p>Responsive weather application with location-based forecasts, offline caching, and PWA scaffolding.</p>
+              <div class="project-actions">
+                <button class="btn-ghost view-project" data-project='{"title":"Weather App","image":"https://via.placeholder.com/1200x700.png?text=Weather+App","description":"A small PWA that works offline and uses geolocation to show forecasts."}'>Preview</button>
+                <a class="btn-primary" href="#" target="_blank" rel="noopener">Live</a>
+                <a class="btn-outline" href="#" target="_blank" rel="noopener">Code</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Project Lightbox -->
+      <div id="project-modal" class="modal" role="dialog" aria-hidden="true" aria-labelledby="project-modal-title">
+        <div class="modal-backdrop" data-close="true"></div>
+        <div class="modal-panel" role="document">
+          <button class="modal-close" aria-label="Close project preview" data-close="true">✕</button>
+          <div class="modal-content">
+            <img id="modal-image" src="" alt="" loading="lazy">
+            <div class="modal-body">
+              <h3 id="project-modal-title"></h3>
+              <p id="project-modal-desc"></p>
+              <div class="modal-actions">
+                <a id="modal-live" class="btn-primary" href="#" target="_blank" rel="noopener">View live</a>
+                <a id="modal-code" class="btn-outline" href="#" target="_blank" rel="noopener">View code</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="section">
+      <div class="container">
+        <h2>Testimonials</h2>
+        <div class="testimonials">
+          <blockquote>
+            <p>"Brilliant took our product from clunky to delightful — performance and accessibility improvements had a measurable impact on engagement."</p>
+            <footer>— Product Manager, Campus Nexus</footer>
+          </blockquote>
+
+          <blockquote>
+            <p>"Great collaborator. Clear code reviews and thoughtful component design. Our team is much faster now."</p>
+            <footer>— Engineering Lead, E-Commerce Platform</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section card">
+      <div class="container">
+        <h2>Contact</h2>
+        <p>I'm currently open to frontend roles and freelance projects. Tell me about your project or ask for a resume.</p>
+
+        <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-grid" novalidate>
+          <label>
+            <span>Name</span>
+            <input type="text" name="name" id="name" required placeholder="Your full name">
+          </label>
+
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" id="email" required placeholder="you@example.com">
+          </label>
+
+          <label class="full">
+            <span>Message</span>
+            <textarea name="message" id="message" rows="6" required placeholder="Tell me about your project..."></textarea>
+          </label>
+
+          <label class="full">
+            <span>Subscribe to newsletter (optional)</span>
+            <input type="email" name="subscribe" id="subscribe" placeholder="Enter email to subscribe">
+          </label>
+
+          <div class="full actions">
+            <button class="btn-primary" type="submit">Send message</button>
+            <button class="btn-ghost" type="button" id="copy-email">Copy email</button>
+            <p id="form-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Brilliant Maloma — Built with care. <small>Designed for accessibility & performance.</small></p>
+      <nav class="footer-nav">
+        <a href="#projects">Work</a>
+        <a href="#contact">Contact</a>
+        <a href="https://github.com/Belligerent15" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
 </body>
-
 </html>
-
-
-
-
-
-
-
